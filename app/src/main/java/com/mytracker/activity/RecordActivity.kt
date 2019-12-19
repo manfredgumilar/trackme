@@ -21,6 +21,7 @@ import java.util.*
 import com.mytracker.database.DatabaseHelper
 import com.mytracker.model.Point
 import com.mytracker.model.Track
+import kotlin.math.round
 
 
 class RecordActivity : AppCompatActivity() {
@@ -140,7 +141,7 @@ class RecordActivity : AppCompatActivity() {
         duration += 5
         runOnUiThread {
             tvDuration.setText("Dauer: " + duration.toString())
-            tvDistance.setText("Distanz: " + wholeDist.toString())
+            tvDistance.setText("Distanz: " + round(wholeDist).toString())
             tvLatLon.setText(lat.toString() + " / " + lon.toString())
         }
         var pointId = db.insertPoint(Point(0, thisId, System.currentTimeMillis(), lat, lon))
