@@ -1,14 +1,19 @@
 package com.mytracker.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
+import android.provider.Settings
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.mytracker.R
 import com.mytracker.constants.Constants
 import com.mytracker.math.Calculate
@@ -26,6 +31,7 @@ import kotlin.math.round
 
 class RecordActivity : AppCompatActivity() {
 
+    val PERMISSION_ID = 42
     private var db = DatabaseHelper(this)
     private var track: Track? = null
     private var calc = Calculate()
@@ -40,7 +46,8 @@ class RecordActivity : AppCompatActivity() {
     private var lastLocation: Location? =null
     private var lat: Double = 0.0
     private var lon: Double = 0.0
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+//    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    lateinit var mFusedLocationClient: FusedLocationProviderClient
 
 
 
@@ -50,11 +57,12 @@ class RecordActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         //init fused location provider
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         //Set the schedule function
 
-
-        checkLastLocation()
+        getLastLocation()
+        requestNewLocationData()
         timer.scheduleAtFixedRate(
             object : TimerTask() {
                 override fun run() {
@@ -78,7 +86,7 @@ class RecordActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    private fun checkPermission(): Boolean {
+    private fun checkPermissions(): Boolean {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
             PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
@@ -90,11 +98,11 @@ class RecordActivity : AppCompatActivity() {
         return false
     }
 
-    private fun checkLastLocation() {
+/*    private fun checkLastLocation() {
 
 
 
-        if(checkPermission()) {
+        if(checkPermissions()) {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     lastLocation = location
@@ -107,24 +115,74 @@ class RecordActivity : AppCompatActivity() {
         }else {
             requestPermissions()
         }
-    }
+    }  */
 
+    @SuppressLint("MissingPermission")
+    private fun getLastLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+
+                mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
+                    var location: Location? = task.result
+ //                   if (location == null) {
+ //                       requestNewLocationData()
+ //                   } else {
+                        lastLocation = location
+ //                   }
+                }
+            } else {
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        } else {
+            requestPermissions()
+        }
+    }
+    @SuppressLint("MissingPermission")
+    private fun requestNewLocationData() {
+        var mLocationRequest = LocationRequest()
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest.interval = 5000
+        mLocationRequest.fastestInterval = 2000
+   //     mLocationRequest.numUpdates = 1
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        mFusedLocationClient!!.requestLocationUpdates(
+            mLocationRequest, mLocationCallback,
+            Looper.myLooper()
+        )
+    }
+    private val mLocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            var mLastLocation: Location = locationResult.lastLocation
+            lastLocation = mLastLocation
+        }
+    }
     private fun requestPermissions() {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_CORE_LOCATION)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
+            PERMISSION_ID
+        )
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permission: Array<String>, grantResults: IntArray) {
-        if(requestCode == Constants.REQUEST_CORE_LOCATION) {
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                checkLastLocation()
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == PERMISSION_ID) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                // Granted. Start getting the location information
             }
         }
     }
 
-
+    private fun isLocationEnabled(): Boolean {
+        var locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
     private fun recPoint() {
-        checkLastLocation()
+        getLastLocation()
         lastLocation?.let {
             lat = it.latitude
             lon = it.longitude
