@@ -57,11 +57,11 @@ class RecordActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         //init fused location provider
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         //Set the schedule function
 
         getLastLocation()
+        // location min alle 5 Sekunden erneuern
         requestNewLocationData()
         timer.scheduleAtFixedRate(
             object : TimerTask() {
