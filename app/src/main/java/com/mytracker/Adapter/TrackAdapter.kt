@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.mytracker.R
 import com.mytracker.model.Track
 import java.lang.Math.round
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -43,14 +44,19 @@ class TrackAdapter(context: Context, var tracks: List<Track>): BaseAdapter() {
         // Get our note object for current position using getItem(position).
         val track = getItem(position) as Track
 
-        tvTrackTitle.text = Date(track.timestamp1).toString()
+        tvTrackTitle.text = toSimpleString(Date(track.timestamp1))
         val duration=(track.timestamp2-track.timestamp1) / 1000
-        tvTrackText.text = track.distance.toString() + "m   " + duration.toString() + "sec"
+        val distanz = track.distance.roundToInt()
+        tvTrackText.text = distanz.toString() + "m   " + duration.toString() + "sec"
 
         // return view containing all text values for current position
         return view
     }
 
+    fun toSimpleString(date: Date) : String {
+        val format = SimpleDateFormat("dd.MM.yyy  HH:mm:ss")
+        return format.format(date)
+    }
     override fun getItem(position: Int): Any {
         return tracks[position]
     }

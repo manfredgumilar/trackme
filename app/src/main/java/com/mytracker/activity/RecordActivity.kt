@@ -10,6 +10,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -203,6 +204,8 @@ class RecordActivity : AppCompatActivity() {
             tvLatLon.setText(lat.toString() + " / " + lon.toString())
         }
         var pointId = db.insertPoint(Point(0, thisId, System.currentTimeMillis(), lat, lon))
+        val msg=lat.toString()+"/"+lon.toString()
+        Log.d("latlon",msg)
         lastLat = lat
         lastLon = lon
         return

@@ -1,7 +1,6 @@
 package com.mytracker.activity
 
 import android.graphics.Color
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -16,8 +15,9 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.mytracker.R
 import com.mytracker.constants.Constants
 import com.mytracker.database.DatabaseHelper
-import com.mytracker.model.Point
 import com.mytracker.model.Track
+
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -77,6 +77,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker at Startpoint and move the camera
         mMap.addMarker(MarkerOptions().position(start).title("Startpunkt"))
         // show map with route centered
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
+//        mMap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
+
+        mMap.setOnMapLoadedCallback(GoogleMap.OnMapLoadedCallback {
+            mMap.moveCamera(
+                CameraUpdateFactory.newLatLngBounds(bounds, 100)
+            )
+        })
+
     }
+
+
+
+
+
 }
