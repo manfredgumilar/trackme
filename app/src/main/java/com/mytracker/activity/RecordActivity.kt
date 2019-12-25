@@ -47,7 +47,6 @@ class RecordActivity : AppCompatActivity() {
     private var lastLocation: Location? =null
     private var lat: Double = 0.0
     private var lon: Double = 0.0
-//    private lateinit var fusedLocationClient: FusedLocationProviderClient
     lateinit var mFusedLocationClient: FusedLocationProviderClient
 
 
@@ -70,8 +69,8 @@ class RecordActivity : AppCompatActivity() {
                     recPoint()
                 }
             },
-            0, 5000
-        )   // 1000 Millisecond  = 1 second
+            0, 1000
+        )
 
 
         stopRecord.setOnClickListener {
@@ -144,8 +143,8 @@ class RecordActivity : AppCompatActivity() {
     private fun requestNewLocationData() {
         var mLocationRequest = LocationRequest()
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        mLocationRequest.interval = 5000
-        mLocationRequest.fastestInterval = 2000
+        mLocationRequest.interval = 1000
+        mLocationRequest.fastestInterval = 500
    //     mLocationRequest.numUpdates = 1
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -197,7 +196,7 @@ class RecordActivity : AppCompatActivity() {
                 wholeDist += lastDist
             }
         }
-        duration += 5
+        duration += 1
         runOnUiThread {
             tvDuration.setText("Dauer: " + duration.toString())
             tvDistance.setText("Distanz: " + round(wholeDist).toString())
