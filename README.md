@@ -1,4 +1,5 @@
-# Aufgabenstellung: App sollte die Distanz zwischen Start- und Endpunkt berechnen. 
+# Track Me
+Aufgabenstellung: App sollte die Distanz zwischen Start- und Endpunkt berechnen. 
 - Nicht Genügend: App lässt sich nicht öffnen oder bietet keine Funktionalität.
 - Genügend: App lässt sich öffnen und bietet geringe Funktionalität.
 - Befriedigend: Aktivitäten lassen sich aufzeichnen.
