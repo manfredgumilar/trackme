@@ -25,11 +25,11 @@
     <style name="Toolbar">
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@color/colorPrimary</item>
-        <item name="titleTextColor">@color/colorWhite</item>
+        <item name="titleTextColor">@color/colorBlack</item>
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <!-- Customize color of navigation drawer icon and back arrow -->
-        <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="colorControlNormal">@color/colorBlack</item>
     </style>
 </resources>
