@@ -1,12 +1,12 @@
 package com.mytracker.math
 
-import kotlin.math.atan2
-import kotlin.math.cos
-import kotlin.math.sin
-import kotlin.math.sqrt
+import kotlin.math.*
 
 class Calculate {
 
+    fun roundGpsCoordinates(coordinate: Double): Double {
+        return (coordinate * 10000.0).roundToLong() / 10000.0
+    }
 
     fun durationAndDistanceToString(duration: Long, distance: Double): String {
         return "Dauer: ${durationToString(duration)}, Distanz: ${distanceToString(distance)}"

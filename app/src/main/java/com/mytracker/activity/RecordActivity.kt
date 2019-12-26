@@ -43,7 +43,6 @@ class RecordActivity : AppCompatActivity() {
     private var lon: Double = 0.0
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
@@ -166,8 +165,8 @@ class RecordActivity : AppCompatActivity() {
     private fun recPoint() {
         getLastLocation()
         lastLocation?.let {
-            lat = it.latitude
-            lon = it.longitude
+            lat = calc.roundGpsCoordinates(it.latitude)
+            lon = calc.roundGpsCoordinates(it.longitude)
         } ?: return
         if (isFirstPoint) {  //  Create db main record, record first point
             thisId = db.insertTrack(

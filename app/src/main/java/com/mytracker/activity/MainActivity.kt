@@ -13,7 +13,8 @@ import com.mytracker.database.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener  {
+class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
+    AdapterView.OnItemLongClickListener {
     private var db = DatabaseHelper(this)
     private var adapter: TrackAdapter? = null
 
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener, Adapt
         builder.setTitle(getString(R.string.DeleteAlertTitle))
         builder.setMessage(getString(R.string.DeleteAlertMessage))
         //Display Yes Button
-        builder.setPositiveButton(R.string.yes){dialog, which ->
+        builder.setPositiveButton(R.string.yes) { dialog, which ->
             //Delete Track by ID
             db.deleteTrackById(id)
             //Refresh ListView
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener, Adapt
             startActivity(intent)
         }
         // Display No Button
-        builder.setNegativeButton(R.string.no){dialog,which ->
+        builder.setNegativeButton(R.string.no) { dialog, which ->
             //No, do nothin'
         }
         val dialog: AlertDialog = builder.create()

@@ -152,17 +152,6 @@ class DatabaseHelper(context: Context) :
         )
     }
 
-    //delete single track
-    fun deleteTrack(track: Track) {
-        val db = writableDatabase
-        db.delete(
-            DATABASE_TABLE_NAME, "$KEY_ID=?", arrayOf(track.id.toString())
-        )
-        db.delete(
-            DATABASE_TABLE_NAME2, "$KEY_TRACKID=?", arrayOf(track.id.toString())
-        )
-    }
-
     //delete single track by ID
     fun deleteTrackById(id: Long) {
         val db = writableDatabase
