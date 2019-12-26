@@ -8,4 +8,9 @@
     <string name="track_coordinates">Koordinaten: %s / %s</string>
     <string name="turn_on_location">Bitte erlauben Sie den GPS-Zugriff</string>
     <string name="startpoint">Startpunkt</string>
+    <string name="DeleteAlertTitle">Track löschen</string>
+    <string name="DeleteAlertMessage">Wollen Sie den Track wirklich löschen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+
 </resources>
