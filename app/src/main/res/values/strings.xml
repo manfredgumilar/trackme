@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">MyTracker</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Kartenansicht</string>
     <string name="title_activity_main">Meine Tracks</string>
-    <string name="title_activity_record">Tracking</string>
+    <string name="title_activity_record">Track aufzeichnen</string>
+    <string name="track_distance">Distanz: %s</string>
+    <string name="track_duration">Dauer: %s</string>
+    <string name="track_coordinates">Koordinaten: %s / %s</string>
+    <string name="turn_on_location">Bitte erlauben Sie den GPS-Zugriff</string>
+    <string name="startpoint">Startpunkt</string>
 </resources>

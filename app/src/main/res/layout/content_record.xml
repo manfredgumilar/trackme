@@ -13,27 +13,29 @@
         style="@style/recordInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Duration"
+        android:paddingLeft="20dp"
         android:paddingTop="20dp"
-        android:paddingLeft="20dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:text="Duration" />
+
     <TextView
-    android:id="@+id/tvDistance"
-    style="@style/recordInfo"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:text="Distance"
-        android:paddingTop="60dp"
+        android:id="@+id/tvDistance"
+        style="@style/recordInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        tools:ignore="MissingConstraints" />
+        android:paddingTop="60dp"
+        tools:ignore="MissingConstraints"
+        tools:text="Distance" />
+
     <TextView
         android:id="@+id/tvLatLon"
         style="@style/recordInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Distance"
-        android:paddingTop="100dp"
         android:paddingLeft="20dp"
-        tools:ignore="MissingConstraints" />
+        android:paddingTop="100dp"
+        tools:ignore="MissingConstraints"
+        tools:text="Distance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

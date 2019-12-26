@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
-import com.mytracker.Adapter.TrackAdapter
 import com.mytracker.R
+import com.mytracker.adapter.TrackAdapter
 import com.mytracker.constants.Constants
 import com.mytracker.database.DatabaseHelper
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -34,14 +33,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         //init NoteAdapter
         adapter = TrackAdapter(this, tracks)
         lvTracks.adapter = adapter
-        lvTracks.onItemClickListener  = this
+        lvTracks.onItemClickListener = this
 
         startRecord.setOnClickListener {
             val intent = Intent(this, RecordActivity::class.java)
             startActivity(intent)
         }
     }
-
-
-
 }

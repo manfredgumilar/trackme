@@ -1,4 +1,4 @@
-package com.mytracker.Adapter
+package com.mytracker.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.mytracker.R
+import com.mytracker.math.Calculate
 import com.mytracker.model.Track
-import java.lang.Math.round
-import java.text.SimpleDateFormat
+import java.text.DateFormat
 import java.util.*
-import kotlin.math.roundToInt
 
+class TrackAdapter(context: Context, private var tracks: List<Track>) : BaseAdapter() {
 
-class TrackAdapter(context: Context, var tracks: List<Track>): BaseAdapter() {
+    private var calc = Calculate()
 
-    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val inflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View
@@ -45,18 +46,18 @@ class TrackAdapter(context: Context, var tracks: List<Track>): BaseAdapter() {
         val track = getItem(position) as Track
 
         tvTrackTitle.text = toSimpleString(Date(track.timestamp1))
-        val duration=(track.timestamp2-track.timestamp1) / 1000
-        val distanz = track.distance.roundToInt()
-        tvTrackText.text = distanz.toString() + "m   " + duration.toString() + "sec"
+        val duration = ((track.timestamp2 - track.timestamp1) / 1000)
+        val distance = track.distance
+        tvTrackText.text = calc.durationAndDistanceToString(duration, distance)
 
         // return view containing all text values for current position
         return view
     }
 
-    fun toSimpleString(date: Date) : String {
-        val format = SimpleDateFormat("dd.MM.yyy  HH:mm:ss")
-        return format.format(date)
+    private fun toSimpleString(date: Date): String {
+        return DateFormat.getDateTimeInstance().format(date)
     }
+
     override fun getItem(position: Int): Any {
         return tracks[position]
     }
@@ -73,5 +74,4 @@ class TrackAdapter(context: Context, var tracks: List<Track>): BaseAdapter() {
         lateinit var title: TextView
         lateinit var text: TextView
     }
-
 }

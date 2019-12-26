@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.mytracker.model.Point
 import com.mytracker.model.Track
 
-class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,DATABASE_VERSION) {
+class DatabaseHelper(context: Context) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         // Database properties
@@ -60,7 +61,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         private const val DROP_TABLE2 = "DROP TABLE IF EXISTS $DATABASE_TABLE_NAME2"
 
         //Database select all statement
-        private const val SELECT_ALL = "SELECT * FROM $DATABASE_TABLE_NAME"
+        private const val SELECT_ALL = "SELECT * FROM $DATABASE_TABLE_NAME ORDER BY $KEY_ID DESC"
     }
 
     //insert Track into Database
@@ -72,8 +73,8 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     fun getAllPoints(id: Long): ArrayList<Point> {
         val points = ArrayList<Point>()
         val selId = id.toString()
-        val SELECT_ALL_POINTS = "SELECT * FROM $DATABASE_TABLE_NAME2 WHERE $KEY_TRACKID = $selId"
-        val cursor = readableDatabase.rawQuery(SELECT_ALL_POINTS, null)
+        val sql = "SELECT * FROM $DATABASE_TABLE_NAME2 WHERE $KEY_TRACKID = $selId"
+        val cursor = readableDatabase.rawQuery(sql, null)
         cursor.moveToFirst().run {
             do {
                 cursorToPoint(cursor)?.let { points.add(it) }
@@ -85,9 +86,9 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
     // create new track object from cursor
     private fun cursorToPoint(cursor: Cursor): Point? {
-        if (cursor?.count ==0) return null
-        var point: Point? = null
-        cursor?.run {
+        if (cursor.count == 0) return null
+        var point: Point?
+        cursor.run {
             point = Point(
                 getLong(getColumnIndex(KEY_ID)),
                 getLong(getColumnIndex(KEY_TRACKID)),
@@ -102,7 +103,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     // Create new ContentValues object from Track
     private fun pointToContentValues(point: Point): ContentValues {
         val values = ContentValues()
-        values.put(KEY_TRACKID, point.trackid)
+        values.put(KEY_TRACKID, point.trackId)
         values.put(KEY_TIMESTAMP, point.timestamp)
         values.put(KEY_LATITUDE, point.latitude)
         values.put(KEY_LONGITUDE, point.longitude)
@@ -111,8 +112,9 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
     //insert Track into Database
     fun insertTrack(track: Track): Long {
-        return writableDatabase.insert(DATABASE_TABLE_NAME,null, trackToContentValues(track))
+        return writableDatabase.insert(DATABASE_TABLE_NAME, null, trackToContentValues(track))
     }
+
     //Get all tracks
     fun getAllTracks(): List<Track> {
         val notes = ArrayList<Track>()
@@ -130,8 +132,8 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     fun getTrack(id: Long): Track? {
         val track: Track?
         val cursor = readableDatabase.query(
-            DATABASE_TABLE_NAME, CURSOR_ARRAY,"$KEY_ID=?",
-            arrayOf(id.toString()),null,null,null,null
+            DATABASE_TABLE_NAME, CURSOR_ARRAY, "$KEY_ID=?",
+            arrayOf(id.toString()), null, null, null, null
         )
         cursor.moveToFirst()
         track = cursorToTrack(cursor)
@@ -164,9 +166,9 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
     // create new track object from cursor
     private fun cursorToTrack(cursor: Cursor): Track? {
-        if (cursor?.count ==0) return null
+        if (cursor.count == 0) return null
         var track: Track? = null
-        cursor?.run {
+        cursor.run {
             track = Track(
                 getLong(getColumnIndex(KEY_ID)),
                 getLong(getColumnIndex(KEY_TIMESTAMP1)),
@@ -191,6 +193,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
         return values
     }
+
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(CREATE_TABLE)
         db?.execSQL(CREATE_TABLE2)

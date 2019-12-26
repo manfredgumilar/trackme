@@ -1,9 +1,8 @@
 package com.mytracker.activity
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,12 +17,11 @@ import com.mytracker.database.DatabaseHelper
 import com.mytracker.model.Track
 
 
-
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private lateinit var mMap: GoogleMap
+    private lateinit var map: GoogleMap
     private var db = DatabaseHelper(this)
-    private var track: Track? =null
+    private var track: Track? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         if (id != Constants.INVALID_VALUE) {
             track = db.getTrack(id)
         }
-            val mapFragment = supportFragmentManager
+        val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
@@ -49,10 +47,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        map = googleMap
         // declare bounds object to fit whole route in screen
-        val LatLongB = LatLngBounds.Builder()
-        var start = LatLng(47.50311,9.7471)
+        val latLong = LatLngBounds.Builder()
+        var start = LatLng(47.50311, 9.7471)
         // Declare polyline object and set up color and width
         val options = PolylineOptions()
         options.color(Color.RED)
@@ -60,35 +58,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         track?.let {
             start = LatLng(it.latitude, it.longitude)
             options.add(start)
-            LatLongB.include(start)
+            latLong.include(start)
             val points = db.getAllPoints(it.id)
-            for (point in points)  {
-                if(point.latitude!=null && point.longitude!=null) {
-                    val latlonpoint = LatLng(point.latitude, point.longitude)
-                    options.add(latlonpoint)
-                    LatLongB.include(latlonpoint)
-                }
+            for (point in points) {
+                val latLonPoint = LatLng(point.latitude, point.longitude)
+                options.add(latLonPoint)
+                latLong.include(latLonPoint)
             }
         }
 
-        val bounds = LatLongB.build()
+        val bounds = latLong.build()
         // add polyline to the map
-        mMap!!.addPolyline(options)
-        // Add a marker at Startpoint and move the camera
-        mMap.addMarker(MarkerOptions().position(start).title("Startpunkt"))
-        // show map with route centered
-//        mMap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
+        map.addPolyline(options)
+        // Add a marker at startpoint and move the camera
+        map.addMarker(MarkerOptions().position(start).title(getString(R.string.startpoint)))
 
-        mMap.setOnMapLoadedCallback(GoogleMap.OnMapLoadedCallback {
-            mMap.moveCamera(
+        map.setOnMapLoadedCallback(GoogleMap.OnMapLoadedCallback {
+            map.moveCamera(
                 CameraUpdateFactory.newLatLngBounds(bounds, 100)
             )
         })
 
     }
-
-
-
-
-
 }
