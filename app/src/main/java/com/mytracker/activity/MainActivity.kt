@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener, Adapt
         id: Long
     ): Boolean {
 
-        // Alert Message for Delete
+        // Alert Message for Deletion
         val builder = AlertDialog.Builder(this@MainActivity)
         builder.setTitle(getString(R.string.DeleteAlertTitle))
         builder.setMessage(getString(R.string.DeleteAlertMessage))
