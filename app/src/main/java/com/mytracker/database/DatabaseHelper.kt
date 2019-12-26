@@ -159,7 +159,7 @@ class DatabaseHelper(context: Context) :
             DATABASE_TABLE_NAME, "$KEY_ID=?", arrayOf(track.id.toString())
         )
         db.delete(
-            DATABASE_TABLE_NAME2, "$KEY_ID=?", arrayOf(track.id.toString())
+            DATABASE_TABLE_NAME2, "$KEY_TRACKID=?", arrayOf(track.id.toString())
         )
     }
 
@@ -170,7 +170,7 @@ class DatabaseHelper(context: Context) :
             DATABASE_TABLE_NAME, "$KEY_ID=?", arrayOf(id.toString())
         )
         db.delete(
-            DATABASE_TABLE_NAME2, "$KEY_ID=?", arrayOf(id.toString())
+            DATABASE_TABLE_NAME2, "$KEY_TRACKID=?", arrayOf(id.toString())
         )
     }
 
