@@ -5,7 +5,7 @@ import kotlin.math.*
 class Calculate {
 
     fun roundGpsCoordinates(coordinate: Double): Double {
-        return (coordinate * 10000.0).roundToLong() / 10000.0
+        return (coordinate * 100000.0).roundToLong() / 100000.0
     }
 
     fun durationAndDistanceToString(duration: Long, distance: Double): String {
