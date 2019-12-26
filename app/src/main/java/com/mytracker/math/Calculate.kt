@@ -16,9 +16,9 @@ class Calculate {
         return if (duration > 60) {
             val minutes = duration / 60
             val seconds = duration % 60
-            "$minutes Minute(n) $seconds Sekunde(n)"
+            "$minutes Min. $seconds Sek."
         } else {
-            "$duration Sekunde(n)"
+            "$duration Sek."
         }
     }
 
@@ -26,10 +26,10 @@ class Calculate {
         return if (distance > 1000) {
             val kilometers = (distance / 1000).toInt()
             val meters = (distance % 1000).toInt()
-            "$kilometers Kilometer $meters Meter"
+            "$kilometers KM $meters M"
 
         } else {
-            "${distance.toInt()} Meter"
+            "${distance.toInt()} M"
         }
     }
 
