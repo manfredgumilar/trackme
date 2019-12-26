@@ -12,7 +12,7 @@ import com.mytracker.model.Track
 import java.text.DateFormat
 import java.util.*
 
-class TrackAdapter(context: Context, private var tracks: List<Track>) : BaseAdapter() {
+class TrackAdapter(context: Context, var tracks: List<Track>) : BaseAdapter() {
 
     private var calc = Calculate()
 
