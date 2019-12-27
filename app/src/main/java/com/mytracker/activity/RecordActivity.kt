@@ -165,8 +165,8 @@ class RecordActivity : AppCompatActivity() {
     private fun recPoint() {
         getLastLocation()
         lastLocation?.let {
-            lat = calc.roundGpsCoordinates(it.latitude)
-            lon = calc.roundGpsCoordinates(it.longitude)
+            lat = calc.truncateGpsCoordinates(it.latitude)
+            lon = calc.truncateGpsCoordinates(it.longitude)
         } ?: return
         if (isFirstPoint) {  //  Create db main record, record first point
             thisId = db.insertTrack(
