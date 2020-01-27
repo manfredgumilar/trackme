@@ -8,7 +8,6 @@ unterstützen Sie dabei ihre Ziele zu erreichen!
 - Mithilfe des Sporttagebuchs haben Sie stets einen Überblick über ihre bereits absolvierten Trainings
 - Einzelne Aktivitäten können Sie auf einer übersichtlichen Kartenansicht darstellen lassen
 ![Übersicht aller bereits aufgezeichneten Tracks](Screenshot_20200127-150346.png)
-![Kartenansicht eines aufgezeichneten Tracks](Screenshot_20200127-150809.png)
 
 ### Aufzeichnen sportlicher Aktivitäten
 - Eine neue Aktivität kann jederzeit aus dem Sporttagebuch heraus gestartet werden
