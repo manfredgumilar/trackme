@@ -6,13 +6,13 @@ unterstützen Sie dabei ihre Ziele zu erreichen!
 
 ## Funktionen
 ### Sporttagebuch
- Mithilfe des Sporttagebuchs haben Sie stets einen Überblick über ihre bereits absolvierten Trainings
+- Mithilfe des Sporttagebuchs haben Sie stets einen Überblick über ihre bereits absolvierten Trainings
 ![Übersicht aller bereits aufgezeichneten Tracks](Screenshot_20200127-150346.png)
-Einzelne Aktivitäten können Sie auf einer übersichtlichen Kartenansicht darstellen lassen
+- Einzelne Aktivitäten können Sie auf einer übersichtlichen Kartenansicht darstellen lassen
 ![Kartenansicht eines aufgezeichneten Tracks](Screenshot_20200127-150809.png)
 ### Aufzeichnen sportlicher Aktivitäten
-Eine neue Aktivität kann jederzeit aus dem Sporttagebuch heraus gestartet werden
-Während des auzeichnenes einer sportlichen Aktivität werden die aktuellen Trainingsdaten übersichtlich dargestellt
+- Eine neue Aktivität kann jederzeit aus dem Sporttagebuch heraus gestartet werden
+- Während des auzeichnenes einer sportlichen Aktivität werden die aktuellen Trainingsdaten übersichtlich dargestellt
 ![Aufzeichnen eines neuen Tracks](Screenshot_20200127-150837.png)
 
 ## Teammitglieder
