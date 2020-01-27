@@ -1,23 +1,25 @@
 # Track Me
-Aufgabenstellung: App sollte die Distanz zwischen Start- und Endpunkt berechnen. 
-- Nicht Genügend: App lässt sich nicht öffnen oder bietet keine Funktionalität.
-- Genügend: App lässt sich öffnen und bietet geringe Funktionalität.
-- Befriedigend: Aktivitäten lassen sich aufzeichnen.
-- Gut: Aktivitäten lassen sich aufzeichnen und speichern. Im Tagebuch werden alle getätigten Aktivitäten archiviert. Über einen Klick auf dir jeweilige Aktivität gelangt man in eine Detailansicht.
-- Sehr Gut: Aktivitäten werden zusätzlich auf einer Karte dargestellt. App überzeugt durch gut strukturierten Source Code und übersichtliche Layouts.
-
+## Allgemein
+Laufen, Wandern oder Radfahren - egal was Sie gerne machen, verfolgen Sie mit der kostenlosen Track Me
+Fitness-App alle ihre sportlichen Aktivitäten. Die Aufzeichnung ihrer Tranings und das übersichtliche Sporttagebuch
+unterstützen Sie dabei ihre Ziele zu erreichen!
 
 ## Funktionen
+### Sporttagebuch
+ Mithilfe des Sporttagebuchs haben Sie stets einen Überblick über ihre bereits absolvierten Trainings
 ![Übersicht aller bereits aufgezeichneten Tracks](Screenshot_20200127-150346.png)
+Einzelne Aktivitäten können Sie auf einer übersichtlichen Kartenansicht darstellen lassen
 ![Kartenansicht eines aufgezeichneten Tracks](Screenshot_20200127-150809.png)
+### Aufzeichnen sportlicher Aktivitäten
+Eine neue Aktivität kann jederzeit aus dem Sporttagebuch heraus gestartet werden
+Während des auzeichnenes einer sportlichen Aktivität werden die aktuellen Trainingsdaten übersichtlich dargestellt
 ![Aufzeichnen eines neuen Tracks](Screenshot_20200127-150837.png)
 
-
 ## Teammitglieder
-- Amann Lukas
-- Auderer Andreas
-- Berchtold Thomas
-- Eberle Harald
-- Engstler Christian
-- Gumilar Manfred
-- Stuchly Oliver
+- Amann Lukas - Koordination
+- Auderer Andreas - Entwicklung
+- Berchtold Thomas - Logo und Design
+- Eberle Harald - Entwicklung
+- Engstler Christian - Testing und Recherche
+- Gumilar Manfred - Entwicklung
+- Stuchly Oliver - Testing und Recherche
