@@ -1,5 +1,5 @@
 # Track Me
-Laufen, Wandern oder Radfahren - egal was Sie gerne machen, verfolgen Sie mit der kostenlosen Track Me
+Laufen, Wandern oder Radfahren - egal was Sie gerne machen, verfolgen Sie mit der kostenlosen "Track Me"
 Fitness-App alle ihre sportlichen Aktivitäten. Die Aufzeichnung ihrer Tranings und das übersichtliche Sporttagebuch
 unterstützen Sie dabei ihre Ziele zu erreichen!
 
@@ -11,7 +11,7 @@ unterstützen Sie dabei ihre Ziele zu erreichen!
 
 ### Aufzeichnen sportlicher Aktivitäten
 - Eine neue Aktivität kann jederzeit aus dem Sporttagebuch heraus gestartet werden
-- Während des auzeichnenes einer sportlichen Aktivität werden die aktuellen Trainingsdaten übersichtlich dargestellt
+- Während des aufzeichnens einer sportlichen Aktivität werden die aktuellen Trainingsdaten übersichtlich dargestellt
 ![Aufzeichnen eines neuen Tracks](Screenshot_20200127-150837.png)
 
 ## Teammitglieder
